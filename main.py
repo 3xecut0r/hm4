@@ -106,12 +106,16 @@ def run_socket_server(ip, port):
         server_socket.close()
 
 
-if __name__ == '__main__':
+def volumes():
     if not STORAGE_DIR.exists():
         STORAGE_DIR.mkdir()
     if not DATA_FILE.exists():
         with open(DATA_FILE, 'w') as fd:
             json.dump({}, fd)
+
+
+if __name__ == '__main__':
+    volumes()
     logging.basicConfig(level=logging.INFO, format='%(threadName)s %(message)s')
     thread_server = Thread(target=run)
     thread_server.start()
